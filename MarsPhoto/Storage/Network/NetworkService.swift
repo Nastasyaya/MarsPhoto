@@ -11,7 +11,7 @@ protocol NetworkService {
     func fetchMarsDataResponse(
         sol: String,
         page: String,
-        completion: @escaping (Result<Welcome, MarsPhotosError>) -> Void
+        completion: @escaping (Result<PhotosResponse, MarsPhotosError>) -> Void
     )
 }
 
@@ -19,7 +19,7 @@ final class NetworkServiceImp: NetworkService {
     func fetchMarsDataResponse(
         sol: String,
         page: String,
-        completion: @escaping (Result<Welcome, MarsPhotosError>) -> Void
+        completion: @escaping (Result<PhotosResponse, MarsPhotosError>) -> Void
     ) {
         guard let task = makeURLSessionDataTask(
             sol: sol,
@@ -37,7 +37,7 @@ final class NetworkServiceImp: NetworkService {
     private func makeURLSessionDataTask(
         sol: String,
         page: String,
-        complition: @escaping (Result<Welcome, MarsPhotosError>) -> Void
+        complition: @escaping (Result<PhotosResponse, MarsPhotosError>) -> Void
     ) -> URLSessionDataTask? {
         guard let request = makeURLRequest(
             sol: sol,
@@ -58,9 +58,11 @@ final class NetworkServiceImp: NetworkService {
                 complition(.failure(.missingData))
                 return
             }
-            
+
+            print(data.prettyPrintedJSONString ?? "Incorrect JSON format")
+
             do {
-                let response = try JSONDecoder().decode(Welcome.self, from: data)
+                let response = try JSONDecoder().decode(PhotosResponse.self, from: data)
                 complition(.success(response))
             } catch {
                 complition(.failure(.jsonDecodeFailed))
@@ -90,7 +92,19 @@ final class NetworkServiceImp: NetworkService {
             URLQueryItem(name: "page", value: page),
             URLQueryItem(name: "api_key", value: APIkey.key)
         ]
-        
+
         return components.url
+    }
+}
+
+extension Data {
+    var prettyPrintedJSONString: NSString? {
+        guard 
+            let object = try? JSONSerialization.jsonObject(with: self, options: []),
+            let data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted]),
+            let prettyPrintedString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
+        else { return nil }
+
+        return prettyPrintedString
     }
 }

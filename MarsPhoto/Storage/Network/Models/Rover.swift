@@ -8,6 +8,16 @@
 import Foundation
 
 struct Rover: Decodable {
+    struct CameraElement: Decodable {
+        let name: String
+        let fullName: String
+
+        enum CodingKeys: String, CodingKey {
+            case name
+            case fullName = "full_name"
+        }
+    }
+
     let id: Int
     let name: RoverName
     let landingDate, launchDate: String

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B10550122C7B36FB00B10169 /* HomeNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10550112C7B36FB00B10169 /* HomeNavigationBarView.swift */; };
+		B123D3C92C7B74FB003E95B6 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B123D3C82C7B74FB003E95B6 /* HistoryView.swift */; };
+		B123D3CD2C7B7C59003E95B6 /* HomeFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B123D3CC2C7B7C59003E95B6 /* HomeFlow.swift */; };
+		B123D3D12C7B8032003E95B6 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B123D3D02C7B8032003E95B6 /* HistoryViewModel.swift */; };
+		B13179CA2C79CBE800C43010 /* TextModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13179C92C79CBE800C43010 /* TextModifier.swift */; };
+		B13179CC2C79D13300C43010 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13179CB2C79D13300C43010 /* CardView.swift */; };
+		B13179CE2C79E1A200C43010 /* CardRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13179CD2C79E1A200C43010 /* CardRowView.swift */; };
 		B13F021C2C79311A00A69465 /* MarsPhotoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F021B2C79311A00A69465 /* MarsPhotoApp.swift */; };
 		B13F021E2C79311A00A69465 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F021D2C79311A00A69465 /* ContentView.swift */; };
 		B13F02202C79311B00A69465 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B13F021F2C79311B00A69465 /* Assets.xcassets */; };
@@ -16,21 +23,30 @@
 		B13F02302C79324000A69465 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = B13F022F2C79324000A69465 /* Lottie */; };
 		B13F02342C79331500A69465 /* loadingItem.json in Resources */ = {isa = PBXBuildFile; fileRef = B13F02332C79331500A69465 /* loadingItem.json */; };
 		B13F023C2C79344500A69465 /* APIkey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F023B2C79344500A69465 /* APIkey.swift */; };
-		B13F023E2C79347900A69465 /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F023D2C79347900A69465 /* Welcome.swift */; };
+		B13F023E2C79347900A69465 /* PhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F023D2C79347900A69465 /* PhotosResponse.swift */; };
 		B13F02402C7934A900A69465 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F023F2C7934A900A69465 /* Photo.swift */; };
 		B13F02432C7934C800A69465 /* Rover.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F02422C7934C800A69465 /* Rover.swift */; };
-		B13F02452C7934E400A69465 /* FullName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F02442C7934E400A69465 /* FullName.swift */; };
-		B13F02472C7934FB00A69465 /* PhotoCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F02462C7934FB00A69465 /* PhotoCamera.swift */; };
-		B13F02492C79351A00A69465 /* CameraName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F02482C79351A00A69465 /* CameraName.swift */; };
-		B13F024B2C79353100A69465 /* CameraElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F024A2C79353100A69465 /* CameraElement.swift */; };
+		B13F02472C7934FB00A69465 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F02462C7934FB00A69465 /* Camera.swift */; };
 		B13F024D2C79354C00A69465 /* MarsPhotosError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F024C2C79354C00A69465 /* MarsPhotosError.swift */; };
 		B13F024F2C79357200A69465 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F024E2C79357200A69465 /* NetworkService.swift */; };
 		B13F02512C79359D00A69465 /* PreloaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F02502C79359D00A69465 /* PreloaderView.swift */; };
 		B13F02542C79378100A69465 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F02532C79378100A69465 /* HomeView.swift */; };
 		B13F02562C79379D00A69465 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13F02552C79379D00A69465 /* HomeViewModel.swift */; };
+		B14201462C7B153800F4D1D6 /* HomeContentConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14201452C7B153800F4D1D6 /* HomeContentConverter.swift */; };
+		B142014B2C7B2C6600F4D1D6 /* FilterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B142014A2C7B2C6600F4D1D6 /* FilterButtonView.swift */; };
+		B151146F2C7A7DE500A9DCD7 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B151146E2C7A7DE500A9DCD7 /* CardViewModel.swift */; };
+		B1F6C56C2C7B5CEB00C8AFFC /* HistoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6C56B2C7B5CEB00C8AFFC /* HistoryCardView.swift */; };
+		B1F6C56E2C7B656400C8AFFC /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6C56D2C7B656400C8AFFC /* PhotoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B10550112C7B36FB00B10169 /* HomeNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationBarView.swift; sourceTree = "<group>"; };
+		B123D3C82C7B74FB003E95B6 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		B123D3CC2C7B7C59003E95B6 /* HomeFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFlow.swift; sourceTree = "<group>"; };
+		B123D3D02C7B8032003E95B6 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		B13179C92C79CBE800C43010 /* TextModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModifier.swift; sourceTree = "<group>"; };
+		B13179CB2C79D13300C43010 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		B13179CD2C79E1A200C43010 /* CardRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRowView.swift; sourceTree = "<group>"; };
 		B13F02182C79311A00A69465 /* MarsPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarsPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B13F021B2C79311A00A69465 /* MarsPhotoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsPhotoApp.swift; sourceTree = "<group>"; };
 		B13F021D2C79311A00A69465 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,18 +56,21 @@
 		B13F02272C79311B00A69465 /* MarsPhoto.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MarsPhoto.xcdatamodel; sourceTree = "<group>"; };
 		B13F02332C79331500A69465 /* loadingItem.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingItem.json; sourceTree = "<group>"; };
 		B13F023B2C79344500A69465 /* APIkey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIkey.swift; sourceTree = "<group>"; };
-		B13F023D2C79347900A69465 /* Welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
+		B13F023D2C79347900A69465 /* PhotosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosResponse.swift; sourceTree = "<group>"; };
 		B13F023F2C7934A900A69465 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		B13F02422C7934C800A69465 /* Rover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rover.swift; sourceTree = "<group>"; };
-		B13F02442C7934E400A69465 /* FullName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullName.swift; sourceTree = "<group>"; };
-		B13F02462C7934FB00A69465 /* PhotoCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCamera.swift; sourceTree = "<group>"; };
-		B13F02482C79351A00A69465 /* CameraName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraName.swift; sourceTree = "<group>"; };
-		B13F024A2C79353100A69465 /* CameraElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraElement.swift; sourceTree = "<group>"; };
+		B13F02462C7934FB00A69465 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		B13F024C2C79354C00A69465 /* MarsPhotosError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsPhotosError.swift; sourceTree = "<group>"; };
 		B13F024E2C79357200A69465 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		B13F02502C79359D00A69465 /* PreloaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloaderView.swift; sourceTree = "<group>"; };
 		B13F02532C79378100A69465 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B13F02552C79379D00A69465 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		B14201452C7B153800F4D1D6 /* HomeContentConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentConverter.swift; sourceTree = "<group>"; };
+		B14201472C7B28D700F4D1D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B142014A2C7B2C6600F4D1D6 /* FilterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonView.swift; sourceTree = "<group>"; };
+		B151146E2C7A7DE500A9DCD7 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		B1F6C56B2C7B5CEB00C8AFFC /* HistoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCardView.swift; sourceTree = "<group>"; };
+		B1F6C56D2C7B656400C8AFFC /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +85,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B10550132C7B370400B10169 /* CustomNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				B10550112C7B36FB00B10169 /* HomeNavigationBarView.swift */,
+			);
+			path = CustomNavigationBar;
+			sourceTree = "<group>";
+		};
+		B123D3C72C7B74DB003E95B6 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				B123D3C82C7B74FB003E95B6 /* HistoryView.swift */,
+				B123D3D02C7B8032003E95B6 /* HistoryViewModel.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		B123D3CA2C7B7C36003E95B6 /* Converters */ = {
+			isa = PBXGroup;
+			children = (
+				B14201452C7B153800F4D1D6 /* HomeContentConverter.swift */,
+			);
+			path = Converters;
+			sourceTree = "<group>";
+		};
+		B123D3CB2C7B7C49003E95B6 /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				B123D3CC2C7B7C59003E95B6 /* HomeFlow.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		B13179C82C79CBC100C43010 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B13179C92C79CBE800C43010 /* TextModifier.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		B13F020F2C79311A00A69465 = {
 			isa = PBXGroup;
 			children = (
@@ -85,13 +145,15 @@
 		B13F021A2C79311A00A69465 /* MarsPhoto */ = {
 			isa = PBXGroup;
 			children = (
+				B13179C82C79CBC100C43010 /* Extensions */,
+				B14201472C7B28D700F4D1D6 /* Info.plist */,
 				B13F021B2C79311A00A69465 /* MarsPhotoApp.swift */,
-				B13F02522C7935A300A69465 /* Views */,
-				B13F02572C7937E100A69465 /* UI */,
 				B13F02392C79341700A69465 /* Network */,
-				B13F02312C7932B400A69465 /* Storage */,
 				B13F02212C79311B00A69465 /* Preview Content */,
 				B13F02322C7932D700A69465 /* Resources */,
+				B13F02312C7932B400A69465 /* Storage */,
+				B13F02572C7937E100A69465 /* UI */,
+				B13F02522C7935A300A69465 /* Views */,
 			);
 			path = MarsPhoto;
 			sourceTree = "<group>";
@@ -137,13 +199,10 @@
 		B13F023A2C79342800A69465 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B13F023D2C79347900A69465 /* Welcome.swift */,
+				B13F023D2C79347900A69465 /* PhotosResponse.swift */,
 				B13F023F2C7934A900A69465 /* Photo.swift */,
 				B13F02422C7934C800A69465 /* Rover.swift */,
-				B13F02442C7934E400A69465 /* FullName.swift */,
-				B13F02462C7934FB00A69465 /* PhotoCamera.swift */,
-				B13F02482C79351A00A69465 /* CameraName.swift */,
-				B13F024A2C79353100A69465 /* CameraElement.swift */,
+				B13F02462C7934FB00A69465 /* Camera.swift */,
 				B13F024C2C79354C00A69465 /* MarsPhotosError.swift */,
 			);
 			path = Models;
@@ -152,9 +211,9 @@
 		B13F02522C7935A300A69465 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B123D3C72C7B74DB003E95B6 /* History */,
+				B14201442C7B150C00F4D1D6 /* Home */,
 				B13F02502C79359D00A69465 /* PreloaderView.swift */,
-				B13F02532C79378100A69465 /* HomeView.swift */,
-				B13F02552C79379D00A69465 /* HomeViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -162,8 +221,50 @@
 		B13F02572C7937E100A69465 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				B1F6C56A2C7B5CC600C8AFFC /* HistoryCardView */,
+				B14201492C7B2C1400F4D1D6 /* FilterButtonView */,
+				B14201482C7B2BF700F4D1D6 /* PhotoCard */,
+				B10550132C7B370400B10169 /* CustomNavigationBar */,
+				B1F6C56D2C7B656400C8AFFC /* PhotoView.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		B14201442C7B150C00F4D1D6 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B123D3CA2C7B7C36003E95B6 /* Converters */,
+				B123D3CB2C7B7C49003E95B6 /* Flow */,
+				B13F02532C79378100A69465 /* HomeView.swift */,
+				B13F02552C79379D00A69465 /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B14201482C7B2BF700F4D1D6 /* PhotoCard */ = {
+			isa = PBXGroup;
+			children = (
+				B13179CD2C79E1A200C43010 /* CardRowView.swift */,
+				B151146E2C7A7DE500A9DCD7 /* CardViewModel.swift */,
+				B13179CB2C79D13300C43010 /* CardView.swift */,
+			);
+			path = PhotoCard;
+			sourceTree = "<group>";
+		};
+		B14201492C7B2C1400F4D1D6 /* FilterButtonView */ = {
+			isa = PBXGroup;
+			children = (
+				B142014A2C7B2C6600F4D1D6 /* FilterButtonView.swift */,
+			);
+			path = FilterButtonView;
+			sourceTree = "<group>";
+		};
+		B1F6C56A2C7B5CC600C8AFFC /* HistoryCardView */ = {
+			isa = PBXGroup;
+			children = (
+				B1F6C56B2C7B5CEB00C8AFFC /* HistoryCardView.swift */,
+			);
+			path = HistoryCardView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,22 +345,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				B13F02562C79379D00A69465 /* HomeViewModel.swift in Sources */,
+				B123D3C92C7B74FB003E95B6 /* HistoryView.swift in Sources */,
+				B13179CE2C79E1A200C43010 /* CardRowView.swift in Sources */,
 				B13F02402C7934A900A69465 /* Photo.swift in Sources */,
-				B13F02472C7934FB00A69465 /* PhotoCamera.swift in Sources */,
+				B13F02472C7934FB00A69465 /* Camera.swift in Sources */,
 				B13F02252C79311B00A69465 /* Persistence.swift in Sources */,
-				B13F02492C79351A00A69465 /* CameraName.swift in Sources */,
+				B13179CA2C79CBE800C43010 /* TextModifier.swift in Sources */,
+				B123D3CD2C7B7C59003E95B6 /* HomeFlow.swift in Sources */,
+				B142014B2C7B2C6600F4D1D6 /* FilterButtonView.swift in Sources */,
 				B13F023C2C79344500A69465 /* APIkey.swift in Sources */,
-				B13F024B2C79353100A69465 /* CameraElement.swift in Sources */,
+				B10550122C7B36FB00B10169 /* HomeNavigationBarView.swift in Sources */,
+				B123D3D12C7B8032003E95B6 /* HistoryViewModel.swift in Sources */,
+				B13179CC2C79D13300C43010 /* CardView.swift in Sources */,
 				B13F024F2C79357200A69465 /* NetworkService.swift in Sources */,
+				B1F6C56E2C7B656400C8AFFC /* PhotoView.swift in Sources */,
 				B13F021E2C79311A00A69465 /* ContentView.swift in Sources */,
 				B13F02432C7934C800A69465 /* Rover.swift in Sources */,
+				B1F6C56C2C7B5CEB00C8AFFC /* HistoryCardView.swift in Sources */,
+				B14201462C7B153800F4D1D6 /* HomeContentConverter.swift in Sources */,
 				B13F021C2C79311A00A69465 /* MarsPhotoApp.swift in Sources */,
-				B13F02452C7934E400A69465 /* FullName.swift in Sources */,
 				B13F024D2C79354C00A69465 /* MarsPhotosError.swift in Sources */,
-				B13F023E2C79347900A69465 /* Welcome.swift in Sources */,
+				B13F023E2C79347900A69465 /* PhotosResponse.swift in Sources */,
 				B13F02542C79378100A69465 /* HomeView.swift in Sources */,
 				B13F02282C79311B00A69465 /* MarsPhoto.xcdatamodeld in Sources */,
 				B13F02512C79359D00A69465 /* PreloaderView.swift in Sources */,
+				B151146F2C7A7DE500A9DCD7 /* CardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +506,7 @@
 				DEVELOPMENT_TEAM = 6VJYRLFV75;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MarsPhoto/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -425,6 +536,7 @@
 				DEVELOPMENT_TEAM = 6VJYRLFV75;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MarsPhoto/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

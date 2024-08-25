@@ -1,5 +1,5 @@
 //
-//  PhotoCamera.swift
+//  Camera.swift
 //  MarsPhoto
 //
 //  Created by Анастасия Кутняхова on 23.08.2024.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct PhotoCamera: Decodable {
+struct Camera: Decodable {
     let id: Int
-    let name: CameraName
+    let name: String
     let roverID: Int
-    let fullName: FullName
+    let fullName: String
 
     enum CodingKeys: String, CodingKey {
         case id, name
