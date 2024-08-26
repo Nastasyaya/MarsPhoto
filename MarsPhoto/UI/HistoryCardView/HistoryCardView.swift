@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HistoryCardView: View {
+    let viewModel: HistoryCardViewModel
     
     var body: some View {
         ZStack {
@@ -31,9 +32,9 @@ struct HistoryCardView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 6) {
-                    CardRowView(label: "Rover:", caption: "cnhjsdjh")
-                    CardRowView(label: "Camera:", caption: "kskjcskj")
-                    CardRowView(label: "Date:", caption: "09.11.2012")
+                    CardRowView(label: "Rover:", caption: viewModel.rover)
+                    CardRowView(label: "Camera:", caption: viewModel.camera)
+                    CardRowView(label: "Date:", caption: viewModel.date)
                 }
             }
             .padding()
@@ -41,5 +42,12 @@ struct HistoryCardView: View {
     }
 }
 #Preview {
-    HistoryCardView()
+    HistoryCardView(
+        viewModel: HistoryCardViewModel(
+            id: 1,
+            rover: "jfdjljfsjl",
+            camera: "hsdkh",
+            date: "09.11.2012"
+        )
+    )
 }

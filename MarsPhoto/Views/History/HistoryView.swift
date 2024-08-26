@@ -11,48 +11,70 @@ struct HistoryView: View {
     let viewModel: HistoryViewModel
     
     var body: some View {
-        
         ZStack {
-            Rectangle()
-                .foregroundStyle(.accentOne)
-                .ignoresSafeArea()
-            
-                .navigationBarBackButtonHidden(true)
-            //            .toolbar {
-            //                ToolbarItem(placement: .principal) {
-            //                    Text("History")
-            //                        .font(.largeTitle)
-            //                        .fontWeight(.bold)
-            //                        .foregroundStyle(.layerOne)
-            //                }
-            
-            HStack {
-                Text("History")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundStyle(.layerOne)
-                    .padding()
-                
-                    .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            Button(
-                                action: viewModel.backTapped,
-                                label: {
-                                    Image("leftChevrone")
-                                }
-                            )
-                        }
-                    }
-            }
+            mainContent
         }
-        .frame(height: 78)
+        .padding(
+            EdgeInsets(
+                top: 2,
+                leading: 20,
+                bottom: 20,
+                trailing: 20
+            )
+        )
+        .background {
+            Color.accentOne
+                .ignoresSafeArea(edges: .top)
+        }
+        .navigationBarBackButtonHidden(true)
         
         Spacer()
+        
+        Group {
+            switch viewModel.state {
+            case .empty:
+                Image("emptyHistory")
+            case .content(let photos):
+                ScrollView {
+                    ForEach(photos) {
+                        HistoryCardView(viewModel: $0)
+                    }
+                }
+                .padding(.horizontal, 20)
+            }
+        }
+        
+        Spacer()
+    }
+    
+    private var mainContent: some View {
+        HStack {
+            Spacer()
+            
+            Text("History")
+                .foregroundStyle(.layerOne)
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            
+            Spacer()
+        }
+        .overlay(alignment: .leading) {
+            Button(
+                action: viewModel.backTapped,
+                label: {
+                    Image("leftChevrone")
+                }
+            )
+        }
     }
 }
 
 #Preview {
     HistoryView(
-        viewModel: HistoryViewModel(onBack: {})
+        viewModel: HistoryViewModel(
+            contentConverter: HistoryContentConverterImp(),
+            information: [],
+            onBack: {}
+        )
     )
 }

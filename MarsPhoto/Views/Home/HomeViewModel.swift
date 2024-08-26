@@ -19,14 +19,16 @@ final class HomeViewModel: ObservableObject {
 
     @Published private(set) var state: State = .loading
 
+    private var photos: [Photo] = []
+
     private let contentConverter: HomeContentConverter
     private let service: NetworkService
-    private let onHistoryShown: () -> Void
+    private let onHistoryShown: (_ information: [Photo]) -> Void
 
     init(
         contentConverter: HomeContentConverter,
         service: NetworkService,
-        onHistoryShown: @escaping () -> Void
+        onHistoryShown: @escaping (_ information: [Photo]) -> Void
     ) {
         self.contentConverter = contentConverter
         self.service = service
@@ -36,7 +38,7 @@ final class HomeViewModel: ObservableObject {
     }
 
     func historyTapped() {
-        onHistoryShown()
+        onHistoryShown(photos)
     }
 }
 
@@ -44,7 +46,7 @@ private extension HomeViewModel {
     func fetchMarsDataResponse() {
         service.fetchMarsDataResponse(
             sol: "1000",
-            page: "1",
+            page: "2",
             completion: { result in
                 DispatchQueue.main.async { [weak self] in
                     self?.handleMarsDataResponse(from: result)
@@ -58,7 +60,8 @@ private extension HomeViewModel {
     ) {
         switch response {
         case .success(let model):
-            state = .content(contentConverter.convert(from: model))
+            photos = model.photos
+            state = .content(contentConverter.convert(from: model.photos))
         case .failure(_):
             state = .loading
         }

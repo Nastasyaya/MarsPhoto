@@ -36,8 +36,10 @@ struct HomeView: View {
             HomeNavigationBarView()
 
             ScrollView {
-                ForEach(model.cards) {
-                    CardView(viewModel: $0)
+                VStack {
+                    ForEach(model.cards) {
+                        CardView(viewModel: $0)
+                    }                    
                 }
                 .padding(EdgeInsets(top: 0, leading: 20, bottom: 12, trailing: 20))
             }
@@ -64,8 +66,8 @@ struct HomeView: View {
         viewModel: HomeViewModel(
             contentConverter: HomeContentConverterImp(),
             service: NetworkServiceImp(),
-            onHistoryShown: {
-                print("History tapped")
+            onHistoryShown: { information in
+                print(information.count)
             }
         )
     )

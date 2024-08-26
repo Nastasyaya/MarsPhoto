@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Camera: Decodable {
+struct Camera: Decodable, Hashable {
     let id: Int
     let name: String
     let roverID: Int

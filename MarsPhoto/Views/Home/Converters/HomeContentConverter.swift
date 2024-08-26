@@ -8,13 +8,13 @@
 import Foundation
 
 protocol HomeContentConverter {
-    func convert(from model: PhotosResponse) -> HomeViewModel.Content
+    func convert(from photos: [Photo]) -> HomeViewModel.Content
 }
 
 struct HomeContentConverterImp: HomeContentConverter {
-    func convert(from model: PhotosResponse) -> HomeViewModel.Content {
+    func convert(from photos: [Photo]) -> HomeViewModel.Content {
         HomeViewModel.Content(
-            cards: model.photos.map { photo in
+            cards: photos.map { photo in
                 CardViewModel(
                     id: photo.id,
                     cameraCaption: photo.camera.fullName,

@@ -8,20 +8,21 @@
 import SwiftUI
 
 struct HomeFlow: View {
-    @State private var isHistoryShown: Bool = false
+    let onBack: () -> Void
+    let onHistoryShown: (_ information: [Photo]) -> Void
 
     var body: some View {
         makeHomeView(
-            onHistoryShown: {
-                isHistoryShown = true
-            }
+            onHistoryShown: onHistoryShown
         )
-        .navigationDestination(isPresented: $isHistoryShown) {
-            makeHistoryView(
-                onBack: {
-                    isHistoryShown = false
-                }
-            )
+        .navigationDestination(for: MarsPhotoDestination.self) { destination in
+            switch destination {
+            case let .history(information):
+                makeHistoryView(
+                    information: information,
+                    onBack: onBack
+                )
+            }
         }
     }
 }
@@ -29,7 +30,9 @@ struct HomeFlow: View {
 // MARK: - HomeView
 private extension HomeFlow {
     func makeHomeView(
-        onHistoryShown: @escaping () -> Void
+        onHistoryShown: @escaping (
+            _ information: [Photo]
+        ) -> Void
     ) -> some View {
         HomeView(
             viewModel: HomeViewModel(
@@ -44,10 +47,13 @@ private extension HomeFlow {
 // MARK: - HistoryView
 private extension HomeFlow {
     func makeHistoryView(
+        information: [Photo],
         onBack: @escaping () -> Void
     ) -> some View {
         HistoryView(
             viewModel: HistoryViewModel(
+                contentConverter: HistoryContentConverterImp(),
+                information: information,
                 onBack: onBack
             )
         )

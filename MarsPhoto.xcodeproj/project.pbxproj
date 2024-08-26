@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1044DD52C7D0E890066EA23 /* MarsPhotoDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1044DD42C7D0E890066EA23 /* MarsPhotoDestination.swift */; };
+		B1044DD72C7D19040066EA23 /* HistoryCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1044DD62C7D19040066EA23 /* HistoryCardViewModel.swift */; };
+		B1044DDA2C7D1B730066EA23 /* HistoryContentConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1044DD92C7D1B730066EA23 /* HistoryContentConverter.swift */; };
 		B10550122C7B36FB00B10169 /* HomeNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10550112C7B36FB00B10169 /* HomeNavigationBarView.swift */; };
 		B123D3C92C7B74FB003E95B6 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B123D3C82C7B74FB003E95B6 /* HistoryView.swift */; };
 		B123D3CD2C7B7C59003E95B6 /* HomeFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B123D3CC2C7B7C59003E95B6 /* HomeFlow.swift */; };
@@ -40,6 +43,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B1044DD42C7D0E890066EA23 /* MarsPhotoDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarsPhotoDestination.swift; sourceTree = "<group>"; };
+		B1044DD62C7D19040066EA23 /* HistoryCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCardViewModel.swift; sourceTree = "<group>"; };
+		B1044DD92C7D1B730066EA23 /* HistoryContentConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryContentConverter.swift; sourceTree = "<group>"; };
 		B10550112C7B36FB00B10169 /* HomeNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationBarView.swift; sourceTree = "<group>"; };
 		B123D3C82C7B74FB003E95B6 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		B123D3CC2C7B7C59003E95B6 /* HomeFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFlow.swift; sourceTree = "<group>"; };
@@ -85,6 +91,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B1044DD32C7D0E6F0066EA23 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				B1044DD42C7D0E890066EA23 /* MarsPhotoDestination.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		B1044DD82C7D1B610066EA23 /* Converters */ = {
+			isa = PBXGroup;
+			children = (
+				B1044DD92C7D1B730066EA23 /* HistoryContentConverter.swift */,
+			);
+			path = Converters;
+			sourceTree = "<group>";
+		};
 		B10550132C7B370400B10169 /* CustomNavigationBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +118,7 @@
 		B123D3C72C7B74DB003E95B6 /* History */ = {
 			isa = PBXGroup;
 			children = (
+				B1044DD82C7D1B610066EA23 /* Converters */,
 				B123D3C82C7B74FB003E95B6 /* HistoryView.swift */,
 				B123D3D02C7B8032003E95B6 /* HistoryViewModel.swift */,
 			);
@@ -148,6 +171,7 @@
 				B13179C82C79CBC100C43010 /* Extensions */,
 				B14201472C7B28D700F4D1D6 /* Info.plist */,
 				B13F021B2C79311A00A69465 /* MarsPhotoApp.swift */,
+				B1044DD32C7D0E6F0066EA23 /* Navigation */,
 				B13F02392C79341700A69465 /* Network */,
 				B13F02212C79311B00A69465 /* Preview Content */,
 				B13F02322C7932D700A69465 /* Resources */,
@@ -263,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				B1F6C56B2C7B5CEB00C8AFFC /* HistoryCardView.swift */,
+				B1044DD62C7D19040066EA23 /* HistoryCardViewModel.swift */,
 			);
 			path = HistoryCardView;
 			sourceTree = "<group>";
@@ -354,8 +379,10 @@
 				B123D3CD2C7B7C59003E95B6 /* HomeFlow.swift in Sources */,
 				B142014B2C7B2C6600F4D1D6 /* FilterButtonView.swift in Sources */,
 				B13F023C2C79344500A69465 /* APIkey.swift in Sources */,
+				B1044DD52C7D0E890066EA23 /* MarsPhotoDestination.swift in Sources */,
 				B10550122C7B36FB00B10169 /* HomeNavigationBarView.swift in Sources */,
 				B123D3D12C7B8032003E95B6 /* HistoryViewModel.swift in Sources */,
+				B1044DD72C7D19040066EA23 /* HistoryCardViewModel.swift in Sources */,
 				B13179CC2C79D13300C43010 /* CardView.swift in Sources */,
 				B13F024F2C79357200A69465 /* NetworkService.swift in Sources */,
 				B1F6C56E2C7B656400C8AFFC /* PhotoView.swift in Sources */,
@@ -366,6 +393,7 @@
 				B13F021C2C79311A00A69465 /* MarsPhotoApp.swift in Sources */,
 				B13F024D2C79354C00A69465 /* MarsPhotosError.swift in Sources */,
 				B13F023E2C79347900A69465 /* PhotosResponse.swift in Sources */,
+				B1044DDA2C7D1B730066EA23 /* HistoryContentConverter.swift in Sources */,
 				B13F02542C79378100A69465 /* HomeView.swift in Sources */,
 				B13F02282C79311B00A69465 /* MarsPhoto.xcdatamodeld in Sources */,
 				B13F02512C79359D00A69465 /* PreloaderView.swift in Sources */,

@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Rover: Decodable {
-    struct CameraElement: Decodable {
+struct Rover: Decodable, Hashable {
+    struct CameraElement: Decodable, Hashable {
         let name: String
         let fullName: String
 
