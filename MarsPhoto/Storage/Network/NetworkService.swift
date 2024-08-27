@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol NetworkService {
     func fetchMarsDataResponse(
@@ -13,9 +14,18 @@ protocol NetworkService {
         page: String,
         completion: @escaping (Result<PhotosResponse, MarsPhotosError>) -> Void
     )
+
+    func fetchImage(
+        url: String,
+        completion: @escaping (Result<UIImage, MarsPhotosError>) -> Void
+    )
 }
 
 final class NetworkServiceImp: NetworkService {
+    static let shared = NetworkServiceImp()
+
+    private init() {}
+
     func fetchMarsDataResponse(
         sol: String,
         page: String,
@@ -32,8 +42,43 @@ final class NetworkServiceImp: NetworkService {
         
         task.resume()
     }
-    
-    
+
+    func fetchImage(
+        url: String,
+        completion: @escaping (Result<UIImage, MarsPhotosError>) -> Void
+    ) {
+        guard let url = URL(string: url) else {
+            completion(.failure(.invalidRequest))
+            return
+        }
+
+        let cache = URLCache.shared
+        let request = URLRequest(url: url)
+
+        if 
+            let cachedResponse = cache.cachedResponse(for: request),
+            let image = UIImage(data: cachedResponse.data)
+        {
+            completion(.success(image))
+        } else {
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                guard
+                    let data = data,
+                    let response = response,
+                    let image = UIImage(data: data)
+                else {
+                    completion(.failure(.missingData))
+                    return
+                }
+
+                let cachedData = CachedURLResponse(response: response, data: data)
+                cache.storeCachedResponse(cachedData, for: request)
+                completion(.success(image))
+            }
+            .resume()
+        }
+    }
+
     private func makeURLSessionDataTask(
         sol: String,
         page: String,

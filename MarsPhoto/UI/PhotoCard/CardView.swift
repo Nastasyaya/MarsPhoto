@@ -28,37 +28,32 @@ struct CardView: View {
                 
                 Spacer()
                 
-                makeImage(from: viewModel.image)
-                    .scaledToFit()
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .frame(width: 130, height: 130)
+                CachedImageView(
+                    viewModel: CachedImageViewModel(
+                        service: NetworkServiceImp.shared,
+                        url: viewModel.image,
+                        onImageShown: viewModel.onImageShown
+                    )
+                )
             }
             .padding(EdgeInsets(top: 26, leading: 16, bottom: 26, trailing: 10))
         }
     }
 }
 
-@ViewBuilder
-private func makeImage(from url: String) -> some View {
-    AsyncImage(url: URL(string: url)) { phase in
-        switch phase {
-        case .empty:
-            Color.accentOne
-        case .success(let image):
-            image
-                .resizable()
-        case .failure(let error):
-            Text(error.localizedDescription)
-        @unknown default:
-            fatalError("Missing image data")
-        }
+#Preview {
+    ZStack {
+        Color.green
+            .ignoresSafeArea()
+        CardView(
+            viewModel: CardViewModel(
+                id: 1,
+                cameraCaption: "cameraCaption",
+                roverCaption: "roverCaption",
+                dateCaption: "dateCaption",
+                image: "image",
+                onImageShown: { _ in }
+            )
+        )
     }
 }
-
-//#Preview {
-//    ZStack {
-//        Color.green
-//            .ignoresSafeArea()
-//        CardView()
-//    }
-//}

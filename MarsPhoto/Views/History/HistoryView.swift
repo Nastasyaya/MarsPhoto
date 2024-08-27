@@ -11,61 +11,26 @@ struct HistoryView: View {
     let viewModel: HistoryViewModel
     
     var body: some View {
-        ZStack {
-            mainContent
-        }
-        .padding(
-            EdgeInsets(
-                top: 2,
-                leading: 20,
-                bottom: 20,
-                trailing: 20
-            )
-        )
-        .background {
-            Color.accentOne
-                .ignoresSafeArea(edges: .top)
-        }
-        .navigationBarBackButtonHidden(true)
-        
-        Spacer()
-        
-        Group {
-            switch viewModel.state {
-            case .empty:
-                Image("emptyHistory")
-            case .content(let photos):
-                ScrollView {
-                    ForEach(photos) {
-                        HistoryCardView(viewModel: $0)
+        VStack {
+            HistoryNavBarView(action: viewModel.backTapped)
+            
+            Group {
+                switch viewModel.state {
+                case .empty:
+                    Image("emptyHistory")
+                    Spacer()
+                    
+                case .content(let photos):
+                    ScrollView {
+                        ForEach(photos) {
+                            HistoryCardView(viewModel: $0)
+                        }
                     }
+                    .padding(.horizontal, 20)
                 }
-                .padding(.horizontal, 20)
             }
         }
-        
-        Spacer()
-    }
-    
-    private var mainContent: some View {
-        HStack {
-            Spacer()
-            
-            Text("History")
-                .foregroundStyle(.layerOne)
-                .font(.largeTitle)
-                .fontWeight(.bold)
-            
-            Spacer()
-        }
-        .overlay(alignment: .leading) {
-            Button(
-                action: viewModel.backTapped,
-                label: {
-                    Image("leftChevrone")
-                }
-            )
-        }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

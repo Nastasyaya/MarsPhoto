@@ -6,13 +6,20 @@
 //
 
 import Foundation
+import UIKit
 
 protocol HomeContentConverter {
-    func convert(from photos: [Photo]) -> HomeViewModel.Content
+    func convert(
+        from photos: [Photo],
+        onImageShown: @escaping (UIImage) -> Void
+    ) -> HomeViewModel.Content
 }
 
 struct HomeContentConverterImp: HomeContentConverter {
-    func convert(from photos: [Photo]) -> HomeViewModel.Content {
+    func convert(
+        from photos: [Photo],
+        onImageShown: @escaping (UIImage) -> Void
+    ) -> HomeViewModel.Content {
         HomeViewModel.Content(
             cards: photos.map { photo in
                 CardViewModel(
@@ -20,7 +27,8 @@ struct HomeContentConverterImp: HomeContentConverter {
                     cameraCaption: photo.camera.fullName,
                     roverCaption: photo.rover.name.rawValue,
                     dateCaption: photo.earthDate,
-                    image: photo.imgSrc
+                    image: photo.imgSrc,
+                    onImageShown: onImageShown
                 )
             }
         )

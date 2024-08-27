@@ -37,9 +37,9 @@ struct HomeView: View {
 
             ScrollView {
                 VStack {
-                    ForEach(model.cards) {
-                        CardView(viewModel: $0)
-                    }                    
+                    ForEach(model.cards) { card in
+                        CardView(viewModel: card)
+                    }
                 }
                 .padding(EdgeInsets(top: 0, leading: 20, bottom: 12, trailing: 20))
             }
@@ -65,7 +65,10 @@ struct HomeView: View {
     HomeView(
         viewModel: HomeViewModel(
             contentConverter: HomeContentConverterImp(),
-            service: NetworkServiceImp(),
+            service: NetworkServiceImp.shared,
+            onImageShown: { url in
+                print(url)
+            },
             onHistoryShown: { information in
                 print(information.count)
             }

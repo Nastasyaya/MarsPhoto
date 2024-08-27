@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct HomeFlow: View {
+    @State private var image: UIImage?
+
     let onBack: () -> Void
     let onHistoryShown: (_ information: [Photo]) -> Void
 
     var body: some View {
         makeHomeView(
+            onImageShown: { image in
+                self.image = image
+            },
             onHistoryShown: onHistoryShown
         )
         .navigationDestination(for: MarsPhotoDestination.self) { destination in
@@ -24,12 +29,20 @@ struct HomeFlow: View {
                 )
             }
         }
+        .fullScreenCover(item: $image) { image in
+            makeFullScreenPhotoView(image: image)
+        }
     }
 }
+
+extension UIImage: Identifiable {}
 
 // MARK: - HomeView
 private extension HomeFlow {
     func makeHomeView(
+        onImageShown: @escaping (
+            _ image: UIImage
+        ) -> Void,
         onHistoryShown: @escaping (
             _ information: [Photo]
         ) -> Void
@@ -37,7 +50,8 @@ private extension HomeFlow {
         HomeView(
             viewModel: HomeViewModel(
                 contentConverter: HomeContentConverterImp(),
-                service: NetworkServiceImp(),
+                service: NetworkServiceImp.shared,
+                onImageShown: onImageShown,
                 onHistoryShown: onHistoryShown
             )
         )
@@ -57,5 +71,14 @@ private extension HomeFlow {
                 onBack: onBack
             )
         )
+    }
+}
+
+// MARK: - FullScreenPhotoView
+private extension HomeFlow {
+    func makeFullScreenPhotoView(
+        image: UIImage
+    ) -> some View {
+        FullScreenPhotoView(image: image)
     }
 }

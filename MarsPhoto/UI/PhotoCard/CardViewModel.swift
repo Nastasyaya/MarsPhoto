@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct CardViewModel: Identifiable {
     let id: Int
@@ -13,4 +14,5 @@ struct CardViewModel: Identifiable {
     let roverCaption: String
     let dateCaption: String
     let image: String
+    let onImageShown: (UIImage) -> Void
 }

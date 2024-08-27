@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class HomeViewModel: ObservableObject {
     enum State {
@@ -23,15 +24,18 @@ final class HomeViewModel: ObservableObject {
 
     private let contentConverter: HomeContentConverter
     private let service: NetworkService
+    private let onImageShown: (_ image: UIImage) -> Void
     private let onHistoryShown: (_ information: [Photo]) -> Void
 
     init(
         contentConverter: HomeContentConverter,
         service: NetworkService,
+        onImageShown: @escaping (_ image: UIImage) -> Void,
         onHistoryShown: @escaping (_ information: [Photo]) -> Void
     ) {
         self.contentConverter = contentConverter
         self.service = service
+        self.onImageShown = onImageShown
         self.onHistoryShown = onHistoryShown
 
         fetchMarsDataResponse()
@@ -61,7 +65,12 @@ private extension HomeViewModel {
         switch response {
         case .success(let model):
             photos = model.photos
-            state = .content(contentConverter.convert(from: model.photos))
+            state = .content(
+                contentConverter.convert(
+                    from: model.photos,
+                    onImageShown: onImageShown
+                )
+            )
         case .failure(_):
             state = .loading
         }
