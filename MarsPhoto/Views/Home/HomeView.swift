@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
-    
+
     var body: some View {
         switch viewModel.state {
         case .loading:
@@ -18,12 +18,27 @@ struct HomeView: View {
             GeometryReader { geometry in
                 ZStack {
                     makeMainContent(from: model)
+                        .disabled(viewModel.isDatePickerShown)
 
                     makeHistoryButton()
                         .position(
                             x: geometry.size.width * 0.88,
                             y: geometry.size.height * 0.93
                         )
+                        .disabled(viewModel.isDatePickerShown)
+
+                    if viewModel.isDatePickerShown {
+                        Color.black
+                            .ignoresSafeArea()
+                            .opacity(0.4)
+                    }
+
+                    DatePickerView(
+                        isDatePickerShown: $viewModel.isDatePickerShown,
+                        selectedDate: $viewModel.selectedDate,
+                        onClose: viewModel.closeDatePickerTapped,
+                        onConfirm: viewModel.confirmSelectedDate
+                    )
                 }
             }
         }
@@ -33,7 +48,12 @@ struct HomeView: View {
         from model: HomeViewModel.Content
     ) -> some View {
         VStack {
-            HomeNavigationBarView()
+            HomeNavigationBarView(
+                onShowDatePicker: {
+                    viewModel.isDatePickerShown.toggle()
+                },
+                onShowFilter: viewModel.filterTapped
+            )
 
             ScrollView {
                 VStack {
@@ -65,13 +85,17 @@ struct HomeView: View {
     HomeView(
         viewModel: HomeViewModel(
             contentConverter: HomeContentConverterImp(),
-            service: NetworkServiceImp.shared,
-            onImageShown: { url in
-                print(url)
-            },
-            onHistoryShown: { information in
-                print(information.count)
-            }
+            parameters: HomeViewModel.Parameters(
+                onFilterShown: { _ in },
+                onImageShown: {
+                    url in
+                    print(url)
+                },
+                onHistoryShown: { information in
+                    print(information.count)
+                }
+            ),
+            service: NetworkServiceImp.shared
         )
     )
 }

@@ -5,6 +5,7 @@
 //  Created by Анастасия Кутняхова on 23.08.2024.
 //
 
+import Combine
 import Foundation
 import UIKit
 
@@ -17,44 +18,82 @@ final class HomeViewModel: ObservableObject {
     struct Content {
         let cards: [CardViewModel]
     }
+    
+    struct Parameters {
+        let onFilterShown: (FilterType) -> Void
+        let onImageShown: (_ image: UIImage) -> Void
+        let onHistoryShown: (_ information: [Photo]) -> Void
+    }
 
+    @Published var isDatePickerShown: Bool = false
+    @Published var selectedDate: Date = .now
     @Published private(set) var state: State = .loading
 
-    private var photos: [Photo] = []
+    private var filteredResult: [Photo] = []
+    private let subject = CurrentValueSubject<[Photo], Never>([])
 
     private let contentConverter: HomeContentConverter
+    private let parameters: Parameters
     private let service: NetworkService
-    private let onImageShown: (_ image: UIImage) -> Void
-    private let onHistoryShown: (_ information: [Photo]) -> Void
 
     init(
         contentConverter: HomeContentConverter,
-        service: NetworkService,
-        onImageShown: @escaping (_ image: UIImage) -> Void,
-        onHistoryShown: @escaping (_ information: [Photo]) -> Void
+        parameters: Parameters,
+        service: NetworkService
     ) {
         self.contentConverter = contentConverter
+        self.parameters = parameters
         self.service = service
-        self.onImageShown = onImageShown
-        self.onHistoryShown = onHistoryShown
 
         fetchMarsDataResponse()
-    }
-
-    func historyTapped() {
-        onHistoryShown(photos)
+        observePhotosSubject()
     }
 }
 
+// MARK: - Actions
+extension HomeViewModel {
+    func filterTapped(type: FilterType) {
+        switch type {
+        case .camera:
+            let cameraElements = subject.value
+                .map { $0.rover.cameras }
+                .first
+            parameters.onFilterShown(
+                .camera(
+                    elements: cameraElements ?? [],
+                    onFiltered: { [weak self] name in
+                        self?.filteredResult = self?.subject.value
+                            .filter { $0.camera.name == name } ?? []
+                    }
+                )
+            )
+        case .rover:
+            break
+        }
+    }
+
+    func historyTapped() {
+        parameters.onHistoryShown(subject.value)
+    }
+    
+    func closeDatePickerTapped() {
+        isDatePickerShown = false
+    }
+    
+    func confirmSelectedDate(date: Date) {
+        isDatePickerShown = false
+        print(date)
+    }
+}
+
+// MARK: - FetchMarsDataResponse
 private extension HomeViewModel {
     func fetchMarsDataResponse() {
         service.fetchMarsDataResponse(
             sol: "1000",
             page: "2",
-            completion: { result in
-                DispatchQueue.main.async { [weak self] in
-                    self?.handleMarsDataResponse(from: result)
-                }
+            completion: { [weak self] result in
+                self?.handleMarsDataResponse(from: result)
             }
         )
     }
@@ -64,15 +103,30 @@ private extension HomeViewModel {
     ) {
         switch response {
         case .success(let model):
-            photos = model.photos
-            state = .content(
-                contentConverter.convert(
-                    from: model.photos,
-                    onImageShown: onImageShown
-                )
-            )
+            subject.send(model.photos)
         case .failure(_):
-            state = .loading
+            DispatchQueue.main.async { [weak self] in
+                self?.state = .loading
+            }
         }
+    }
+}
+
+// MARK: - ObservePhotosSubject
+private extension HomeViewModel {
+    func observePhotosSubject() {
+        subject
+            .map { [weak self] photos in
+                guard let self = self else {
+                    return Content(cards: [])
+                }
+                return self.contentConverter.convert(
+                    from: photos,
+                    onImageShown: self.parameters.onImageShown
+                )
+            }
+            .map { .content($0) }
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$state)
     }
 }

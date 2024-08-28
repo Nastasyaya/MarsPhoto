@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeFlow: View {
+    @State private var filterType: FilterType?
     @State private var image: UIImage?
 
     let onBack: () -> Void
@@ -15,6 +16,9 @@ struct HomeFlow: View {
 
     var body: some View {
         makeHomeView(
+            onFilterShown: { type in
+                filterType = type
+            },
             onImageShown: { image in
                 self.image = image
             },
@@ -29,6 +33,18 @@ struct HomeFlow: View {
                 )
             }
         }
+        .sheet(item: $filterType) { type in
+            FilterView(
+                filterType: type,
+                onClose: {
+                    filterType = nil
+                },
+                onConfirm: {
+                    filterType = nil
+                }
+            )
+            .presentationDetents([.height(306)])
+        }
         .fullScreenCover(item: $image) { image in
             makeFullScreenPhotoView(image: image)
         }
@@ -40,6 +56,7 @@ extension UIImage: Identifiable {}
 // MARK: - HomeView
 private extension HomeFlow {
     func makeHomeView(
+        onFilterShown: @escaping (FilterType) -> Void,
         onImageShown: @escaping (
             _ image: UIImage
         ) -> Void,
@@ -50,9 +67,12 @@ private extension HomeFlow {
         HomeView(
             viewModel: HomeViewModel(
                 contentConverter: HomeContentConverterImp(),
-                service: NetworkServiceImp.shared,
-                onImageShown: onImageShown,
-                onHistoryShown: onHistoryShown
+                parameters: HomeViewModel.Parameters(
+                    onFilterShown: onFilterShown,
+                    onImageShown: onImageShown,
+                    onHistoryShown: onHistoryShown
+                ),
+                service: NetworkServiceImp.shared
             )
         )
     }
