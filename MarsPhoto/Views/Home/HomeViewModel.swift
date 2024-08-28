@@ -29,8 +29,7 @@ final class HomeViewModel: ObservableObject {
     @Published var selectedDate: Date = .now
     @Published private(set) var state: State = .loading
 
-    private var filteredResult: [Photo] = []
-    private let subject = CurrentValueSubject<[Photo], Never>([])
+    private var photos: [Photo] = []
 
     private let contentConverter: HomeContentConverter
     private let parameters: Parameters
@@ -46,7 +45,6 @@ final class HomeViewModel: ObservableObject {
         self.service = service
 
         fetchMarsDataResponse()
-        observePhotosSubject()
     }
 }
 
@@ -55,15 +53,14 @@ extension HomeViewModel {
     func filterTapped(type: FilterType) {
         switch type {
         case .camera:
-            let cameraElements = subject.value
+            let cameraElements = photos
                 .map { $0.rover.cameras }
                 .first
             parameters.onFilterShown(
                 .camera(
                     elements: cameraElements ?? [],
-                    onFiltered: { [weak self] name in
-                        self?.filteredResult = self?.subject.value
-                            .filter { $0.camera.name == name } ?? []
+                    onFiltered: { name in
+                        print(name)
                     }
                 )
             )
@@ -73,7 +70,7 @@ extension HomeViewModel {
     }
 
     func historyTapped() {
-        parameters.onHistoryShown(subject.value)
+        parameters.onHistoryShown(photos)
     }
     
     func closeDatePickerTapped() {
@@ -101,32 +98,23 @@ private extension HomeViewModel {
     func handleMarsDataResponse(
         from response: Result<PhotosResponse, MarsPhotosError>
     ) {
-        switch response {
-        case .success(let model):
-            subject.send(model.photos)
-        case .failure(_):
-            DispatchQueue.main.async { [weak self] in
+        DispatchQueue.main.async { [weak self] in
+            switch response {
+            case .success(let response):
+                self?.handleSuccessResponse(with: response.photos)
+            case .failure(_):
                 self?.state = .loading
             }
         }
     }
-}
-
-// MARK: - ObservePhotosSubject
-private extension HomeViewModel {
-    func observePhotosSubject() {
-        subject
-            .map { [weak self] photos in
-                guard let self = self else {
-                    return Content(cards: [])
-                }
-                return self.contentConverter.convert(
-                    from: photos,
-                    onImageShown: self.parameters.onImageShown
-                )
-            }
-            .map { .content($0) }
-            .receive(on: DispatchQueue.main)
-            .assign(to: &$state)
+    
+    func handleSuccessResponse(with photos: [Photo]) {
+        self.photos = photos
+        state = .content(
+            contentConverter.convert(
+                from: photos,
+                onImageShown: parameters.onImageShown
+            )
+        )
     }
 }
